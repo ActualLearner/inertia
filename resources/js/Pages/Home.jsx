@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Home() {
+function Home({ name }) {
   return (
-    <h1>Hello User</h1>
+    <h1>Hello {name}</h1>
   )
 }
 
