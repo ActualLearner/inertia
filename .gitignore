@@ -1,24 +1,61 @@
+# Laravel & Composer
 /.phpunit.cache
+/vendor
+/.phpactor.json
+/.phpunit.result.cache
+
+# Node & NPM/Yarn
 /node_modules
+/npm-debug.log
+/yarn-error.log
+/package-lock.json
+/yarn.lock
+
+# Laravel public directories
 /public/build
 /public/hot
 /public/storage
-/storage/*.key
-/storage/pail
-/vendor
+
+# Environment files
 .env
 .env.backup
 .env.example
 .env.production
-.phpactor.json
-.phpunit.result.cache
+
+# Storage & Cache
+/storage/*.key
+/storage/pail
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/logs
+
+# IDEs and Editors
+/.idea
+/.vscode
+/.nova
+/.zed
+/.fleet
+
+# Homestead
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
+
+# Authentication keys and credentials
 /auth.json
-/.fleet
-/.idea
-/.nova
-/.vscode
-/.zed
+
+# OS files (e.g., macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Jetstream, Breeze, or other scaffolding files
+/public/vendor
+
+# React build output
+/build
+/dist
+
+# Other common files to ignore
+*.log
+*.bak
+*.swp
