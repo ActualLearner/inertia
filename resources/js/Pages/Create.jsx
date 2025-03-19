@@ -1,36 +1,39 @@
 import React from 'react'
-import { useForm } from '@inertiajs/react'
+import { Head, useForm } from '@inertiajs/react'
 
 function Create() {
 
-    const { data, setData, post, errors, processing} = useForm({
+    const { data, setData, post, errors, processing } = useForm({
         body: "",
     })
 
-    function submit(e){
+    function submit(e) {
         e.preventDefault();
         post("/posts");
     }
 
     return (
-      <>
-      <h1 className='title'>Create</h1>
-      {data.body}
-        <div>
-            <form onSubmit={submit} className='w-1/2 mx-auto'>
-                <textarea rows="10" 
-                value={data.body} 
-                onChange={(e) => setData("body", e.target.value)}
-                className={errors.body && "!ring-red-500"}
-                >
-                </textarea>
-            {errors.body && <div className='error'>{errors.body}</div>}
-                <button className='primary-btn mt-4'
-                disabled={processing}
-                >Create Post</button>
-            </form>
-        </div>
-      </>
+        <>
+
+            <Head title="Create" />
+
+            <h1 className='title'>Create</h1>
+            {data.body}
+            <div>
+                <form onSubmit={submit} className='w-1/2 mx-auto'>
+                    <textarea rows="10"
+                        value={data.body}
+                        onChange={(e) => setData("body", e.target.value)}
+                        className={errors.body && "!ring-red-500"}
+                    >
+                    </textarea>
+                    {errors.body && <div className='error'>{errors.body}</div>}
+                    <button className='primary-btn mt-4'
+                        disabled={processing}
+                    >Create Post</button>
+                </form>
+            </div>
+        </>
     )
 }
 
