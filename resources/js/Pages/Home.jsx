@@ -1,6 +1,6 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 import { useRoute } from '../../../vendor/tightenco/ziggy';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Home({ posts }) {
 
@@ -8,19 +8,34 @@ function Home({ posts }) {
   const { flash } = usePage().props;
   const { component } = usePage();
 
-  const [flashMsg, setFlashMsg] = useState(flash.message);
+  const [flashMsg, setFlashMsg] = useState({
+    message: flash.message,
+    success: flash.success,
+  });
 
-  setTimeout(() => {
-    setFlashMsg(null);
-  }, 1500);
+  // Clear flash messages after a delay (e.g., 1500ms)
+  useEffect(() => {
+    if (flashMsg.message || flashMsg.success) {
+      const timer = setTimeout(() => {
+        setFlashMsg({ message: null, success: null });
+      }, 1500);
+
+      return () => clearTimeout(timer); // Cleanup timeout on unmount
+    }
+  }, [flashMsg]); // Only trigger when flashMessages change
 
   return (
     <>
       <Head title={component} />
       <h1 className="title">Hello</h1>
-      {flashMsg && <div className="absolute top-24 right-6 bg-rose-500 
+      {flashMsg.message && <div className="absolute top-24 right-6 bg-rose-500 
       p-2 rounded-md shadow-lg text-sm text-white">
-        {flashMsg}
+        {flashMsg.message}
+      </div>}
+
+      {flashMsg.success && <div className="absolute top-24 right-6 bg-green-500 
+      p-2 rounded-md shadow-lg text-sm text-white">
+        {flashMsg.success}
       </div>}
 
       <div>
